@@ -147,41 +147,45 @@ const EditUser = ({ users ,phoneValid,
             className="outline-none border-2 m-2 rounded-md text-center"
           />
         </label>
-        <label
-          htmlFor="phone"
-          className=" flex items-center justify-center gap-8"
-        >
-          PhoneNo.
-          <PhoneInput
-            id="phone-input"
-            country="in"
-            value={user.phone}
-            onChange={(value) => setUser({ ...user, phone: value })}
-            isValid={(inputNumber, country, countries) => {
-              if (startsWith(user.phone, country.dialCode)) {
-                phoneNumberTyped = country.format.replace("+", "");
-                phoneNumberTyped = phoneNumberTyped.replace(" ", "");
-                phoneNumberLength = phoneNumberTyped.replace("-", "").length;
-              }
-              setPhoneValid(
+        <label htmlFor="phone" className="text-left flex items-center">
+        Phone No.
+        <PhoneInput
+          id="phone-input"
+          country="in"
+          value={user.phone}
+          onChange={(value) => setUser({ ...user, phone: value })}
+          isValid={(inputNumber, country, countries) => {
+
+            const countryCode=countries.filter(item => startsWith(inputNumber, item.dialCode))
+            if (startsWith(inputNumber, country.dialCode)) {
+             let x= country.format.replace("+","").trim();
+             let a=  x.replace(/\s/g, "").trim();
+              phoneNumberLength = a.replaceAll('-',"").replace(/\s/g, "").length;
+              console.log(country.format.length);
+              console.log(phoneNumberLength);
+              console.log(inputNumber.length)
+            }
+            setPhoneValid(
+              startsWith(inputNumber, country.dialCode) &&
+                user.phone.length === phoneNumberLength
+            );
+            return countries.some((country) => {
+              return (
                 startsWith(inputNumber, country.dialCode) &&
-                  user.phone.length === phoneNumberLength
+                user.phone.length === phoneNumberLength
               );
-              return countries.some((country) => {
-                return (
-                  startsWith(inputNumber, country.dialCode) &&
-                  user.phone.length === phoneNumberLength
-                );
-              });
-            }}
-            inputProps={{
-              name: "phone-input",
-              required: true,
-            }}
-            defaultErrorMessage="Invalid Phone number"
-            countryCodeEditable={false}
-          />
-        </label>
+            });
+          }}
+          inputProps={{
+            name: "phone-input",
+            required: true,
+          }}
+          defaultErrorMessage="Invalid Phone number"
+          countryCodeEditable={false}
+        />
+      </label>
+
+        
         <label
           htmlFor="address1"
           className=" flex items-center justify-center gap-8"

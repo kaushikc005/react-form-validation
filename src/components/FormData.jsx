@@ -88,7 +88,7 @@ const FormData = ({phoneValid,
       firstname: "",
       lastname: "",
       email: "",
-      phone: "91  ",
+      phone: "",
       address1: "",
       address2: "",
       state: "",
@@ -152,10 +152,15 @@ const FormData = ({phoneValid,
           value={user.phone}
           onChange={(value) => setUser({ ...user, phone: value })}
           isValid={(inputNumber, country, countries) => {
-            if (startsWith(user.phone, country.dialCode)) {
-              phoneNumberTyped = country.format.replace("+", "");
-              phoneNumberTyped = phoneNumberTyped.replace(" ", "");
-              phoneNumberLength = phoneNumberTyped.replace("-", "").length;
+
+            const countryCode=countries.filter(item => startsWith(inputNumber, item.dialCode))
+            if (startsWith(inputNumber, country.dialCode)) {
+             let x= country.format.replace("+","").trim();
+             let a=  x.replace(/\s/g, "").trim();
+              phoneNumberLength = a.replaceAll('-',"").replace(/\s/g, "").length;
+              console.log(country.format.length);
+              console.log(phoneNumberLength);
+              console.log(inputNumber.length)
             }
             setPhoneValid(
               startsWith(inputNumber, country.dialCode) &&
