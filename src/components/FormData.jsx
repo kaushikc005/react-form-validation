@@ -105,17 +105,18 @@ const FormData = ({phoneValid,
     >
       <h1 className="text-3xl font-semibold m-4">Enter Your Details</h1>
       <label htmlFor="firstname" className="text-left flex items-center">
-        First Name
-        <input
-          type="text"
-          name="firstname"
-          id="firstname"
-          value={user.firstname}
-          placeholder="First Name"
-          className="outline-none border-2 m-2 rounded-md text-center"
-          minLength="5"
-          onChange={(e) => setUser({ ...user, firstname: e.target.value })}
-        />
+          First Name
+          <input
+            type="text"
+            name="firstname"
+            id="firstname"
+            value={user.firstname}
+            placeholder="First Name"
+            className="outline-none border-2 m-2 rounded-md text-center"
+            required
+            minLength="5"
+            onChange={(e) => setUser({ ...user, firstname: e.target.value })}
+          />
       </label>
       <label htmlFor="lastname" className="text-left flex items-center">
         Last Name

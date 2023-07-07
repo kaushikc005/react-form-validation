@@ -10,8 +10,8 @@ const UserCard = ({ user }) => {
   };
   return (
     <section
-      className="grid  gap-2 justify-center items-center w-fit 
-    border text-xs font-semibold bg-slate-500 p-8 flex flex-col rounded-lg text-white"
+      className="grid gap-2 justify-center items-center w-full 
+    border text-lg font-semibold bg-slate-500 p-8 flex flex-col rounded-lg text-white"
     >
       <p>Firstname : {user.firstname}</p>
       <p>Lastname: {user.lastname}</p>

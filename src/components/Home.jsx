@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 const Home = ({ users }) => {
   console.log(users)
   return (
-    <section className="flex flex-col w-full xs:p-8 md:p-0">
+    <section className="flex flex-col w-full xs:p-8 md:p-4">
       <h1 className="text-5xl text-center xs:m-4 md:m-2">WELCOME</h1>
       <p className="text-5xl text-center xs:m-4 md:m-2">List of Users</p>
       {users.length>0 ? (
-        <article className="grid xs:grid-cols-1 md:grid-cols-4 self-center ">
+        <article className="w-full  xs:flex xs:flex-col items-center md:grid
+        md:grid-cols-4 xs:gap-4 md:gap-0 ">
           {users.map((item, index) => (
             <UserCard user={item} key={index} />
           ))}
