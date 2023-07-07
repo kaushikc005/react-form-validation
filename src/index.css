@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.dropdown{
+    min-width: 200px !important;
+}
+
+
+.form-control {
+    width: 200px !important;
+}
